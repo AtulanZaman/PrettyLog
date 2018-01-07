@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Tail file</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script th:src="@{/js/sockjs-0.3.4.js}" src="../../static/js/sockjs-0.3.4.js"> </script>
+    <script th:src="@{/js/stomp.js}" src="../../static/js/stomp.js"> </script>
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+        var URLS = {};
+        URLS.tailFilesURL = /*[[@{/tailfilesep}]]*/ '/tailfilesep';
+        URLS.tailFilesTopic = /*[[@{/topic/tailfiles}]]*/ '/topic/tailfiles';
+        /*]]>*/
+    </script>
+    <script th:src="@{/js/tailfileapp.js}" src="../../static/js/tailfileapp.js"></script>
+</head>
+<body>
+	<div class="container-fluid">
+        <div>
+            <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <table class="table">
+                            <tr><th>Logs</th></tr>
+                            <tr ng-repeat="log in buffer.arr track by $index">
+                                <td>{{log}}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
