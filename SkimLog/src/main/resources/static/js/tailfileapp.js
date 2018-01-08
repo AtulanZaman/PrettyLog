@@ -45,8 +45,8 @@ var tailFilesApp = angular.module("tailFilesApp",[]);
 tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     function init() {
-        $scope.buffer = new CircularBuffer(200);
-        $scope.logs = [1,2,3];
+        $scope.buffer = new CircularBuffer(600);
+        $scope.searchText = '';
     }
 
     $scope.initSockets = function() {

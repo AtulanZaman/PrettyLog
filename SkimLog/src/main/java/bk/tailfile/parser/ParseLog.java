@@ -33,7 +33,7 @@ public class ParseLog {
 				//filterByCore(p);
 				filterByModel(p);
 				
-/*				System.out.println(p.getTimeStamp());
+/*				System.out.println(p.getTimeStamp()); 
 				System.out.println(p.getContext());
 				System.out.println(p.getBody());*/
 			}

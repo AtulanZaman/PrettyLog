@@ -22,11 +22,20 @@
 	<div class="container-fluid">
         <div>
             <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
+                <form>
+                    <div class="form-group">
+                      <div class="input-group">
+                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
+                      </div>
+                   </div>
+                </form>
+
                 <div class="row">
                     <div class="col-xs-12">
                         <table class="table">
                             <tr><th>Logs</th></tr>
-                            <tr ng-repeat="log in buffer.arr track by $index">
+                            <tr ng-repeat="log in buffer.arr | filter:searchText track by $index">
                                 <td>{{log}}</td>
                             </tr>
                         </table>
