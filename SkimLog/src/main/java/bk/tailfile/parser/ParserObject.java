@@ -49,7 +49,7 @@ public class ParserObject {
 		this.body = body;
 	}
 	
-	public void setIsCollapsible(String isCollapsible) {
+	public void setIsCollapsible(boolean isCollapsible) {
 		this.isCollapsible = isCollapsible;	
 	}
 	
