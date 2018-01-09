@@ -5,9 +5,8 @@ public class ParserObject {
 	String timeStamp, context, body, logLevel;
 	boolean isCollapsible;
 
-	public ParserObject (String body) {
+	public ParserObject () {
 		isCollapsible = false;
-		this.body = body;
 	}
 	
 	public ParserObject (String timeStamp, String logLevel, String context, String body) {
@@ -34,6 +33,10 @@ public class ParserObject {
 		return body;
 	}
 	
+	public boolean getIsCollapsible() {
+		return isCollapsible;	
+	}
+	
 	public void setTimeStamp(String timeStamp) {
 		this.timeStamp = timeStamp;
 	}
@@ -44,6 +47,10 @@ public class ParserObject {
 
 	public void setBody(String body) {
 		this.body = body;
+	}
+	
+	public void setIsCollapsible(String isCollapsible) {
+		this.isCollapsible = isCollapsible;	
 	}
 	
 	public String toString () {
