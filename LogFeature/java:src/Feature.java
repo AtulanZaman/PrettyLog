@@ -16,7 +16,7 @@ public class Feature {
 	public static boolean isFilter(ParserObject p) {
 		for (String filter : target) {
 			if ((p.getContext() == null && p.getLogLevel() == null) || (p.getContext().contains(filter))
-					|| (p.getLogLevel().contains(filter)) || ((p.getContext() == null))) {
+					|| (p.getLogLevel().contains(filter))) {
 				return true;
 			}
 		}
