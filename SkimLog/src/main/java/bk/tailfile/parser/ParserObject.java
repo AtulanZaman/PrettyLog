@@ -2,16 +2,20 @@ package bk.tailfile.parser;
 
 public class ParserObject {
 
-	String timeStamp, context, body;
+	String timeStamp, context, body, logLevel;
+	boolean isCollapsible;
 
-	public ParserObject () {
-		
+	public ParserObject (String body) {
+		isCollapsible = false;
+		this.body = body;
 	}
 	
-	public ParserObject (String timeStamp, String context, String body) {
+	public ParserObject (String timeStamp, String logLevel, String context, String body) {
 		this.timeStamp = timeStamp;
+		this.logLevel = logLevel;
 		this.context = context;
 		this.body = body;
+		isCollapsible = false;
 	}
 	
 	public void append (String str) {
@@ -43,6 +47,6 @@ public class ParserObject {
 	}
 	
 	public String toString () {
-		return timeStamp + " " + context + " " + body;
+		return timeStamp + " " + logLevel + " " + context + " " + body;
 	}
 }
