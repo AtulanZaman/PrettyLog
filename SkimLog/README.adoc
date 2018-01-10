@@ -16,6 +16,14 @@ Stylesheet: BootStrap CSS
 == Forks from
 https://github.com/bijukunjummen/spring-websockets-sample/tree/master/projects/tail-file
 
+== Features
+Search bar <Demo>
+Whitelist <Future>
+Play/Pause <Demo>
+Number of lines <Future>
+Navbar <Demo>
+Log Pattern <Future>
+
 == Running the Sample
 The sample is Spring-boot based and can be run with the following command:
 
