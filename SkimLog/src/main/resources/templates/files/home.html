@@ -36,7 +36,10 @@
                         <table class="table">
                             <tr><th>Logs</th></tr>
                             <tr ng-repeat="log in buffer.arr | filter:searchText track by $index">
-                                <td>{{log}}</td>
+                                <td>{{log.timeStamp}}</td>
+                                <td>{{log.logLevel}}</td>
+                                <td>{{log.context}}</td>
+                                <td style="white-space: pre-wrap;">{{log.body}}</td>
                             </tr>
                         </table>
                     </div>

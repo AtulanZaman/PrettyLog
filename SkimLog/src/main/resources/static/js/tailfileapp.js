@@ -8,10 +8,14 @@ CircularBuffer.prototype.size = function() {
 };
 
 CircularBuffer.prototype.add = function(a) {
-    if (this.arr.length >= this.size) {
-        this.arr.shift();
+    if(a.context==""){
+        this.arr[this.arr.length-1].body = this.arr[this.arr.length-1].body + "\n " + a.body;
+    }else{
+        if (this.arr.length >= this.size) {
+            this.arr.shift();
+        }
+        this.arr.push(a);
     }
-    this.arr.push(a);
 }
 
 CircularBuffer.prototype.addArray = function(arr) {
@@ -61,7 +65,7 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.notify = function(message) {
         $scope.$apply(function() {
-            $scope.buffer.add(angular.fromJson(message.body));
+            $scope.buffer.add(angular.fromJson(angular.fromJson(message.body)));
         });
     };
 
