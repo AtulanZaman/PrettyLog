@@ -7,6 +7,7 @@
     <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-sanitize.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script th:src="@{/js/sockjs-0.3.4.js}" src="../../static/js/sockjs-0.3.4.js"> </script>
     <script th:src="@{/js/stomp.js}" src="../../static/js/stomp.js"> </script>
@@ -36,10 +37,10 @@
                     <div class="col-xs-12">
                         <table class="table">
                             <tr ng-repeat="log in buffer.arr | filter:searchText track by $index">
-                                <td>{{log.timeStamp}}</td>
-                                <td>{{log.logLevel}}</td>
-                                <td>{{log.context}}</td>
-                                <td ng-if="!log.isCollapsible" style="white-space: pre-wrap;">{{log.body}}</td>
+                                <td ng-bind-html="log.timeStamp | highlight:searchText"></td>
+                                <td ng-bind-html="log.logLevel | highlight:searchText"></td>
+                                <td ng-bind-html="log.context | highlight:searchText"></td>
+                                <td ng-if="!log.isCollapsible" style="white-space: pre-wrap;" ng-bind-html="log.body | highlight:searchText"></td>
                                 <td ng-if="log.isCollapsible">
                                     <div class="panel panel-default">
                                         <div class="panel-heading">
@@ -48,7 +49,7 @@
                                             </i>
                                         </div>
                                         <div id="collapseOne{{$index}}" class="panel-collapse collapse">
-                                          <div style="white-space: pre-wrap;" class="panel-body">{{log.body}}</div>
+                                          <div style="white-space: pre-wrap;" class="panel-body" ng-bind-html="log.body | highlight:searchText"></div>
                                         </div>
                                     </div>
                                 </td>

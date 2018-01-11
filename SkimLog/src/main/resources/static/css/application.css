@@ -13,3 +13,7 @@ p, div {
 .longtext {
     word-break:break-all;
 }
+
+.highlighted { 
+	background: yellow 
+}

@@ -10,7 +10,7 @@ CircularBuffer.prototype.size = function() {
 CircularBuffer.prototype.add = function(a) {
     if(a.context==""){
         this.arr[this.arr.length-1].body = this.arr[this.arr.length-1].body + "\n " + a.body;
-        this.arr.[this.arr.length-1].isCollapsible = true;
+        this.arr[this.arr.length-1].isCollapsible = true;
     }else{
         if (this.arr.length >= this.size) {
             this.arr.shift();
@@ -76,4 +76,11 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     init();
     $scope.initSockets();
+}).filter('highlight', function($sce) {
+    return function(text, phrase) {
+      if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
+        '<span class="highlighted">$1</span>')
+
+      return $sce.trustAsHtml(text)
+    }
 });
