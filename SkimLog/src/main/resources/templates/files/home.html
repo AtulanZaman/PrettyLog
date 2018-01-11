@@ -5,8 +5,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
-    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script th:src="@{/js/sockjs-0.3.4.js}" src="../../static/js/sockjs-0.3.4.js"> </script>
     <script th:src="@{/js/stomp.js}" src="../../static/js/stomp.js"> </script>
     <script th:inline="javascript">
@@ -34,12 +35,23 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <table class="table">
-                            <tr><th>Logs</th></tr>
                             <tr ng-repeat="log in buffer.arr | filter:searchText track by $index">
                                 <td>{{log.timeStamp}}</td>
                                 <td>{{log.logLevel}}</td>
                                 <td>{{log.context}}</td>
-                                <td style="white-space: pre-wrap;">{{log.body}}</td>
+                                <td ng-if="!log.isCollapsible" style="white-space: pre-wrap;">{{log.body}}</td>
+                                <td ng-if="log.isCollapsible">
+                                    <div class="panel panel-default">
+                                        <div class="panel-heading">
+                                            <i data-toggle="collapse" href="#collapseOne{{$index}}">
+                                              {{log.body.substring(0,100)}}
+                                            </i>
+                                        </div>
+                                        <div id="collapseOne{{$index}}" class="panel-collapse collapse">
+                                          <div style="white-space: pre-wrap;" class="panel-body">{{log.body}}</div>
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
                         </table>
                     </div>

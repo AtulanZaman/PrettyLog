@@ -10,6 +10,7 @@ CircularBuffer.prototype.size = function() {
 CircularBuffer.prototype.add = function(a) {
     if(a.context==""){
         this.arr[this.arr.length-1].body = this.arr[this.arr.length-1].body + "\n " + a.body;
+        this.arr.[this.arr.length-1].isCollapsible = true;
     }else{
         if (this.arr.length >= this.size) {
             this.arr.shift();
