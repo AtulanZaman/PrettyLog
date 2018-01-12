@@ -23,3 +23,9 @@ The sample is Spring-boot based and can be run with the following command:
 	2) Install https://maven.apache.org/install.html[Maven]
 	3) From project root, run: 
 		$ mvn spring-boot:run
+		
+== Commands
+
+mvn spring-boot:run
+
+curl -X POST http://localhost:8080/shutdown
