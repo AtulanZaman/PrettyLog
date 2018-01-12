@@ -62,11 +62,7 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.disconnect = function () {
         $scope.connected = false;
-        $scope.stompClient.disconnect(
-            function(){
-                alert("See you next time!");
-            }    
-        );
+        $scope.stompClient.disconnect();
     }
 
     $scope.initSockets = function() {

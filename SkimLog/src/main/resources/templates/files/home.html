@@ -58,41 +58,27 @@
                       <input style="margin-left:10px"  type="submit" value="Submit"/>
                 </div>
                 
-                  <nav class="navbar navbar-default navbar-fixed-top">
-                    <div class="container">
-                      <table>
-                          <tr>
-                              <td>
-                                  <form>
-                                      <div class="form-group">
-                                        <div class="input-group">
-                                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                                          <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
-                                        </div>
-                                     </div>
+                  <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top ">
+                                  <form class="form-inline">
+                                      <div class="input-group">
+                                         <span class="input-group-addon" id="basic-addon1">
+                                             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                         </span>
+                                         <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
+                                      </div>
+                                      <button class="btn w3-button w3-dark-grey w3-xlarge pull-right" onclick="openRightMenu()">&#9776;</button>
+                                        <button class="btn navbar-btn btn-default pull-right" ng-click="buffer.clear()">
+                                          clear
+                                      </button>    
+                                      <button class="btn navbar-btn btn-danger pull-right" ng-click="disconnect()" ng-show="connected">
+                                          disconnect
+                                      </button>
+                                      <button class="btn navbar-btn btn-success pull-right" ng-click="initSockets()" ng-show="!connected">
+                                          connect
+                                      </button>
+                                      
+                                  
                                   </form>
-                              </td>
-                              <td>
-                                  <button ng-click="disconnect()" ng-show="connected">
-                                      disconnect
-                                  </button>
-                                  <button ng-click="initSockets()" ng-show="!connected">
-                                      connect
-                                  </button>
-                              </td>
-                              <td>
-                                  <button ng-click="buffer.clear()">
-                                      clear
-                                  </button>
-                              </td>
-                              <td>
-                                  <div class="w3-teal">           
-                                    <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
-                                  </div>
-                              </td>
-                          </tr>
-                      </table>
-                    </div>
                   </nav>
 
                 
