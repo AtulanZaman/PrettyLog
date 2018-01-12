@@ -1,12 +1,15 @@
 package bk.tailfile.parser;
+import java.util.Random;
 
 public class ParserObject {
 
 	String timeStamp, context, body, logLevel;
 	boolean isCollapsible;
+	public Integer oid;
 
 	public ParserObject () {
 		isCollapsible = false;
+		oid = getOID();
 	}
 	
 	public ParserObject (String timeStamp, String logLevel, String context, String body) {
@@ -15,6 +18,7 @@ public class ParserObject {
 		this.context = context;
 		this.body = body;
 		isCollapsible = false;
+		oid = getOID();
 	}
 	
 	public void append (String str) {
@@ -59,5 +63,10 @@ public class ParserObject {
 	
 	public String toString () {
 		return timeStamp + " " + logLevel + " " + context + " " + body;
+	}
+
+	private Integer getOID(){
+		Random random = new Random();
+		return random.nextInt(999999999);
 	}
 }

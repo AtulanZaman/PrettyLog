@@ -64,7 +64,7 @@
                                          <span class="input-group-addon" id="basic-addon1">
                                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
                                          </span>
-                                         <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
+                                         <input type="text" class="form-control" placeholder="Search" style="width: 500px" ng-model="searchText"/>
                                       </div>
                                       <button class="btn w3-button w3-dark-grey w3-xlarge pull-right" onclick="openRightMenu()">&#9776;</button>
                                         <button class="btn navbar-btn btn-default pull-right" ng-click="buffer.clear()">
@@ -86,7 +86,7 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <table class="table">
-                            <tr ng-repeat="log in buffer.arr | filter:searchText track by $index">
+                            <tr ng-repeat="log in buffer.arr | filter:searchText track by log.oid">
                                 <td ng-bind-html="log.timeStamp | highlight:searchText"></td>
                                 <td ng-bind-html="log.logLevel | highlight:searchText"></td>
                                 <td ng-bind-html="log.context | highlight:searchText"></td>

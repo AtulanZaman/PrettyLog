@@ -16,6 +16,7 @@ public class FileContentRecordingService {
 	public void sendLinesToTopic(String line) {
 		ParserObject p = ParseLog.parser(line);
 		Feature.setCollapsible(p);
+		System.out.println("OID: "+p.oid);
 		if(Feature.isFilter(p)){
 			this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", p);
 		}
