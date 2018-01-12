@@ -72,6 +72,19 @@
                                 </form>
                             </td>
                             <td>
+                                <button ng-click="disconnect()" ng-show="connected">
+                                    disconnect
+                                </button>
+                                <button ng-click="initSockets()" ng-show="!connected">
+                                    connect
+                                </button>
+                            </td>
+                            <td>
+                                <button ng-click="buffer.clear()">
+                                    clear
+                                </button>
+                            </td>
+                            <td>
                                 <div class="w3-teal">           
                                   <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
                                 </div>
