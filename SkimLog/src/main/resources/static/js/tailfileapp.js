@@ -45,6 +45,10 @@ CircularBuffer.prototype.getArr = function() {
     return this.arr;
 };
 
+CircularBuffer.prototype.clear = function() {
+    this.arr = [];
+};
+
 var tailFilesApp = angular.module("tailFilesApp",[]);
 
 tailFilesApp.controller("TailFilesCtrl", function ($scope) {
@@ -52,14 +56,26 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
     function init() {
         $scope.buffer = new CircularBuffer(600);
         $scope.searchText = '';
+        $scope.connected = true;
+        $scope.stompClient= null;
+    }
+
+    $scope.disconnect = function () {
+        $scope.connected = false;
+        $scope.stompClient.disconnect(
+            function(){
+                alert("See you next time!");
+            }    
+        );
     }
 
     $scope.initSockets = function() {
-        $scope.socket={};
+        $scope.connected = true;
+        $scope.socket = {};
         $scope.socket.client = new SockJS(URLS.tailFilesURL);  //new WebSocket('ws://' + window.location.host + URLS.tailFilesURL);
-        $scope.socket.stomp = Stomp.over($scope.socket.client);
-        $scope.socket.stomp.connect({}, function() {
-            $scope.socket.stomp.subscribe(URLS.tailFilesTopic, $scope.notify);
+        $scope.stompClient = Stomp.over($scope.socket.client);
+        $scope.stompClient.connect({}, function() {
+            $scope.stompClient.subscribe(URLS.tailFilesTopic, $scope.notify);
         });
         $scope.socket.client.onclose = $scope.reconnect;
     };
@@ -71,6 +87,7 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
     };
 
     $scope.reconnect = function() {
+        $scope.connected = true;
         setTimeout($scope.initSockets, 10000);
     };
 
