@@ -57,43 +57,45 @@
                       <br/>
                       <input style="margin-left:10px"  type="submit" value="Submit"/>
                 </div>
+                
+                  <nav class="navbar navbar-default navbar-fixed-top">
+                    <div class="container">
+                      <table>
+                          <tr>
+                              <td>
+                                  <form>
+                                      <div class="form-group">
+                                        <div class="input-group">
+                                          <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                          <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
+                                        </div>
+                                     </div>
+                                  </form>
+                              </td>
+                              <td>
+                                  <button ng-click="disconnect()" ng-show="connected">
+                                      disconnect
+                                  </button>
+                                  <button ng-click="initSockets()" ng-show="!connected">
+                                      connect
+                                  </button>
+                              </td>
+                              <td>
+                                  <button ng-click="buffer.clear()">
+                                      clear
+                                  </button>
+                              </td>
+                              <td>
+                                  <div class="w3-teal">           
+                                    <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+                                  </div>
+                              </td>
+                          </tr>
+                      </table>
+                    </div>
+                  </nav>
 
-                <div class="row">
-                    <table>
-                        <tr>
-                            <td>
-                                <form>
-                                    <div class="form-group">
-                                      <div class="input-group">
-                                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
-                                      </div>
-                                   </div>
-                                </form>
-                            </td>
-                            <td>
-                                <button ng-click="disconnect()" ng-show="connected">
-                                    disconnect
-                                </button>
-                                <button ng-click="initSockets()" ng-show="!connected">
-                                    connect
-                                </button>
-                            </td>
-                            <td>
-                                <button ng-click="buffer.clear()">
-                                    clear
-                                </button>
-                            </td>
-                            <td>
-                                <div class="w3-teal">           
-                                  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
-                    
-                    
-                </div>
+                
 
                 <div class="row">
                     <div class="col-xs-12">
