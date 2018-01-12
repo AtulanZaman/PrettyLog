@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-sanitize.js"></script>
@@ -17,6 +18,18 @@
         URLS.tailFilesURL = /*[[@{/tailfilesep}]]*/ '/tailfilesep';
         URLS.tailFilesTopic = /*[[@{/topic/tailfiles}]]*/ '/topic/tailfiles';
         /*]]>*/
+        function openLeftMenu() {
+            document.getElementById("leftMenu").style.display = "block";
+        }
+        function closeLeftMenu() {
+            document.getElementById("leftMenu").style.display = "none";
+        }
+        function openRightMenu() {
+            document.getElementById("rightMenu").style.display = "block";
+        }
+        function closeRightMenu() {
+            document.getElementById("rightMenu").style.display = "none";
+        }
     </script>
     <script th:src="@{/js/tailfileapp.js}" src="../../static/js/tailfileapp.js"></script>
 </head>
@@ -24,14 +37,50 @@
 	<div class="container-fluid">
         <div>
             <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
-                <form>
-                    <div class="form-group">
-                      <div class="input-group">
-                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
-                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
-                      </div>
-                   </div>
-                </form>
+                <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;" id="rightMenu">
+                      <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                      <p style="margin-left:10px">Number of lines</p>
+                      <input style="margin-left:10px" type="text" name="inpNumOfLines" value="1000"/>
+                      <p style="margin-left:10px">WhiteList</p>
+                      <textarea style="margin-left:10px" type="text" name="inpWhiteList">
+                         nexj.core.controller.*
+                         nexj.model.class.*
+                         nexj.model.library.*
+                         nexj.core.rpc.http.*
+                         nexj.core.persistence.sql.SQLAdapter.*
+                         ERROR
+                         WARN
+                     </textarea>
+                      <p style="margin-left:10px">Log Pattern</p>
+                      <input style="margin-left:10px" type="text" name="inpLogPattern" value=";%d %-5p [%c] %m%n"/>
+                      <br/>
+                      <br/>
+                      <input style="margin-left:10px"  type="submit" value="Submit"/>
+                </div>
+
+                <div class="row">
+                    <table>
+                        <tr>
+                            <td>
+                                <form>
+                                    <div class="form-group">
+                                      <div class="input-group">
+                                        <div class="input-group-addon"><i class="fa fa-search"></i></div>
+                                        <input type="text" class="form-control" placeholder="Search" ng-model="searchText"/>
+                                      </div>
+                                   </div>
+                                </form>
+                            </td>
+                            <td>
+                                <div class="w3-teal">           
+                                  <button class="w3-button w3-teal w3-xlarge w3-right" onclick="openRightMenu()">&#9776;</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+                </div>
 
                 <div class="row">
                     <div class="col-xs-12">
