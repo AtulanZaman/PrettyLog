@@ -18,6 +18,53 @@ p, div {
 	background: yellow 
 }
 
-.w3teal { 
-	float:right;
+.navbar-inverse {
+
+  .navbar-toggle-always {
+    border-color: @navbar-inverse-toggle-border-color;
+    &:hover,
+    &:focus {
+      background-color: @navbar-inverse-toggle-hover-bg;
+    }
+    .icon-bar-always {
+      background-color: @navbar-inverse-toggle-icon-bar-bg;
+    }
+  }
+}
+
+.panel-collapse {
+	margin-bottom: 0px;
+}
+
+.navbar-btn{
+	margin-right:10px; 
+	margin-left:10px;
+}
+
+.navbar-toggle-always{
+
+  .navbar-toggle;
+
+  @media (min-width: 768px){
+    display: block!important;
+    background-color: transparent;
+    border:1px solid #333333;
+  }
+
+  .zero-margins;
+
+  .icon-bar-always {
+    .icon-bar;
+    border:1px solid #fff;
+    display: block;
+    border-radius: 1px;
+  }
+
+  .icon-bar-always + .icon-bar-always {
+    margin-top: 4px;
+  }
+}
+
+.input-group {
+	width: 500px;
 }

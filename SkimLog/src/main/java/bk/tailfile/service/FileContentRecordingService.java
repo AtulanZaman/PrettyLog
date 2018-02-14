@@ -16,8 +16,8 @@ public class FileContentRecordingService {
 	public void sendLinesToTopic(String line) {
 		ParserObject p = ParseLog.parser(line);
 		Feature.setCollapsible(p);
-		if(Feature.isFilter(p)){
+		/*if(Feature.isFilter(p)){*/
 			this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", p);
-		}
+		/*}*/
 	}
 }
