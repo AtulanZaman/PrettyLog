@@ -14,8 +14,8 @@
 	<int-file:tail-inbound-channel-adapter id="fileInboundChannelAdapter"
 					channel="toTopicChannel"
 					file="C:/Work/log/out.txt"
-					delay="200"
-					file-delay="100"/>
+					delay="0"
+					file-delay="10000"/>
 
 	<int:outbound-channel-adapter ref="fileContentRecordingService" method="sendLinesToTopic" channel="toTopicChannel"/>
 </beans>

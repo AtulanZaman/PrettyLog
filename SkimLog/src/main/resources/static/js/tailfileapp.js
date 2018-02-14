@@ -84,7 +84,7 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.reconnect = function() {
         $scope.connected = true;
-        setTimeout($scope.initSockets, 10000);
+        setTimeout($scope.initSockets, 100);
     };
 
     init();
