@@ -8,16 +8,22 @@ CircularBuffer.prototype.size = function() {
 };
 
 CircularBuffer.prototype.add = function(a) {
-    if(a.context==""){
-        this.arr[this.arr.length-1].body = this.arr[this.arr.length-1].body + "\n " + a.body;
-        this.arr[this.arr.length-1].isCollapsible = true;
-    }else{
-        if (this.arr.length >= this.size) {
-            this.arr.shift();
+        if(a.context==""){
+            this.arr[this.arr.length-1].body = this.arr[this.arr.length-1].body + "\n " + a.body;
+            this.arr[this.arr.length-1].isCollapsible = true;
+        }else{
+            if (this.arr.length >= this.size) {
+                this.arr.shift();
+            }
+            this.arr.push(a);
         }
-        this.arr.push(a);
+};
+
+CircularBuffer.prototype.addAll = function(array){
+    for(var i=0; i<array.length;i++){
+        this.add(array[i]);
     }
-}
+};
 
 CircularBuffer.prototype.addArray = function(arr) {
     for (var i=0;i<arr.length;i++) {
@@ -78,7 +84,8 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.notify = function(message) {
         $scope.$apply(function() {
-            $scope.buffer.add(angular.fromJson(angular.fromJson(message.body)));
+            //console.log("Foobar"+(angular.fromJson(angular.fromJson(message.body))).toString());
+            $scope.buffer.addAll(angular.fromJson(angular.fromJson(message.body)));
         });
     };
 
