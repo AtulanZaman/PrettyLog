@@ -5,13 +5,16 @@ import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
+import java.util.concurrent.*;
+import java.util.TimerTask;
 import bk.tailfile.feature.*;
 import bk.tailfile.parser.*;
+import bk.tailfile.service.ConvertAndSendTimerTask;
 
 @Service
 public class FileContentRecordingService {
 	@Autowired
-	private SimpMessagingTemplate simpMessagingTemplate;
+	public SimpMessagingTemplate simpMessagingTemplate;
 	public List<ParserObject> stack = new ArrayList<ParserObject>();
 
 	public void sendLinesToTopic(String line) {
@@ -23,8 +26,12 @@ public class FileContentRecordingService {
 			this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", stack);
 			stack.clear();
 		}
-			
-		/*}*/	
-		/*}*/
+		ScheduledExecutorService executor = Executors.newSingleThreadScheduledExecutor();
+		executor.scheduleAtFixedRate(
+			new ConvertAndSendTimerTask(this),
+			1000L,
+			1000L,
+			TimeUnit.MILLISECONDS
+		);
 	}
 }
