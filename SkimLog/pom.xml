@@ -118,7 +118,18 @@
 					<source>${java.version}</source>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
-			</plugin>			
+			</plugin>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+			</plugin>					
 		</plugins>
 	</build>
 	<repositories>
@@ -133,32 +144,4 @@
 			<url>http://repo.spring.io/release</url>
 		</repository>
 	</repositories>
-	<pluginRepositories>
-		<pluginRepository>
-			<id>spring-milestones</id>
-			<name>Spring Milestones</name>
-			<url>http://repo.spring.io/milestone</url>
-			<snapshots>
-				<enabled>false</enabled>
-			</snapshots>
-		</pluginRepository>
-		<pluginRepository>
-			<id>spring-release</id>
-			<name>Spring Release</name>
-			<url>http://repo.spring.io/release</url>
-		</pluginRepository>			
-	</pluginRepositories>
-	<profiles>
-		<profile>
-			<id>dev</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.springframework.boot</groupId>
-						<artifactId>spring-boot-maven-plugin</artifactId>
-					</plugin>				
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
 </project>
