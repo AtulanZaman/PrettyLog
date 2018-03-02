@@ -60,7 +60,8 @@ var tailFilesApp = angular.module("tailFilesApp",[]);
 tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     function init() {
-        $scope.buffer = new CircularBuffer(600);
+        $scope.numLines = 5;
+        $scope.buffer = new CircularBuffer($scope.numLines);
         $scope.searchText = '';
         $scope.connected = true;
         $scope.stompClient= null;
@@ -93,6 +94,10 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
         $scope.connected = true;
         setTimeout($scope.initSockets, 100);
     };
+
+    $scope.submit = function(){
+        $scope.buffer = new CircularBuffer($scope.numLines);
+    }
 
     init();
     $scope.initSockets();
