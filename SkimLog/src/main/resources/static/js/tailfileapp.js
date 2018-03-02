@@ -57,10 +57,12 @@ CircularBuffer.prototype.clear = function() {
 
 var tailFilesApp = angular.module("tailFilesApp",[]);
 
-tailFilesApp.controller("TailFilesCtrl", function ($scope) {
+tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $http) {
 
     function init() {
-        $scope.numLines = 5;
+        $scope.pattern = "; %d %-5p [%c] %m%n";
+        $scope.filePath = "C:/Work/log/out.txt";
+        $scope.numLines = 600;
         $scope.buffer = new CircularBuffer($scope.numLines);
         $scope.searchText = '';
         $scope.connected = true;
@@ -97,11 +99,26 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.submit = function(){
         $scope.buffer = new CircularBuffer($scope.numLines);
+    //     var data = {
+    //         filename: $scope.filePath
+    //     };
+    //     var config = {
+    //             headers : {
+    //                 'Accept': 'text/plain'
+    //             }
+    //     };
+    //     $http.post('/files/submit',data, config).then(function successCallback(response) {
+    // // this callback will be called asynchronously
+    // // when the response is available
+    //     }, function errorCallback(response) {
+    // // called asynchronously if an error occurs
+    // // or server returns response with an error status.
+    //     });
     }
 
     init();
     $scope.initSockets();
-}).filter('highlight', function($sce) {
+}]).filter('highlight', function($sce) {
     return function(text, phrase) {
       if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
         '<span class="highlighted">$1</span>')

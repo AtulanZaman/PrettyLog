@@ -14,6 +14,7 @@ public class TailController {
 
 	@RequestMapping("/home")
 	public String home(Model model) {
+		System.out.println("foobar");
 		return "files/home";
 	}
 
@@ -23,6 +24,6 @@ public class TailController {
 	){
 		System.out.println(filename);
 		this.filename = filename;
-		return "files/home";
+		return this.filename;
 	}
 }

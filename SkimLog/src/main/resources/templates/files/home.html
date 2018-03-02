@@ -53,9 +53,13 @@ ERROR
 WARN
                        </textarea>
                         <p style="margin-left:10px">Log Pattern</p>
-                        <input style="margin-left:10px; width: 80%;" type="text" name="inpLogPattern" value=";%d %-5p [%c] %m%n"/>
+                        <input style="margin-left:10px; width: 80%;" type="text" name="inpLogPattern" ng-model="pattern"/>
                         <br/>
                         <br/>
+                        <div class="input-group">
+                          <p style="margin-left:10px">File name</p>
+                          <input style="margin-left:10px; width: 80%;" type="text" name="filePath" ng-model="filePath"/>
+                        </div>
                         <input class="btn navbar-btn btn-default" style="margin-left:10px;" type="submit" value="Submit"/>
                       </form>
                       <form action="/shutdown" method="post">
