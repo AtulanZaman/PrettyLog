@@ -57,13 +57,25 @@ CircularBuffer.prototype.clear = function() {
 
 var tailFilesApp = angular.module("tailFilesApp",[]);
 
-tailFilesApp.controller("TailFilesCtrl", function ($scope) {
+tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $http) {
 
     function init() {
-        $scope.buffer = new CircularBuffer(600);
+        $scope.pattern = "; %d %-5p [%c] %m%n";
+        $scope.filePath = "C:/Work/log/out.txt";
+        $scope.numLines = 600;
+        $scope.buffer = new CircularBuffer($scope.numLines);
         $scope.searchText = '';
         $scope.connected = true;
         $scope.stompClient= null;
+        $scope.whitelist = 
+`nexj.core.controller
+nexj.model.class
+nexj.model.library
+nexj.core.rpc.http
+nexj.core.persistence.sql.SQLAdapter
+ERROR
+WARN`;
+        $scope.submit();
     }
 
     $scope.disconnect = function () {
@@ -84,7 +96,6 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
 
     $scope.notify = function(message) {
         $scope.$apply(function() {
-            //console.log("Foobar"+(angular.fromJson(angular.fromJson(message.body))).toString());
             $scope.buffer.addAll(angular.fromJson(angular.fromJson(message.body)));
         });
     };
@@ -94,9 +105,28 @@ tailFilesApp.controller("TailFilesCtrl", function ($scope) {
         setTimeout($scope.initSockets, 100);
     };
 
+    $scope.submit = function(){
+        $scope.buffer = new CircularBuffer($scope.numLines);
+        var splitted_whitelist = $scope.whitelist.split("\n");
+        var data = {
+            filename: $scope.filePath,
+            filters: splitted_whitelist
+        };
+        var config = {
+                headers : {
+                    'Accept': 'text/plain'
+                }
+        };
+        $http.post('/submit',data, config).then(function successCallback(response) {
+            console.log(response.data);
+        }, function errorCallback(response) {
+            console.log("Error.");
+        });
+    }
+
     init();
     $scope.initSockets();
-}).filter('highlight', function($sce) {
+}]).filter('highlight', function($sce) {
     return function(text, phrase) {
       if (phrase) text = text.replace(new RegExp('('+phrase+')', 'gi'),
         '<span class="highlighted">$1</span>')

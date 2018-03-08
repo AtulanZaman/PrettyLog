@@ -1,17 +1,29 @@
 package bk.tailfile.web;
 
+import java.io.File;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.integration.file.tail.FileTailingMessageProducerSupport;
+import bk.tailfile.web.ApplicationContextProvider;
 
-@Controller
-@RequestMapping("/files")
+@RestController
 public class TailController {
+	public static Properties properties = new Properties();
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		model.addAttribute("filename", "C:/Work/log/out.txt");
-		return "files/home";
+	@RequestMapping(value="/submit", method = RequestMethod.POST)
+	public String submit(@RequestBody Properties properties){
+		this.properties = properties;
+		setTailFileSource(this.properties.getFilename());
+		return "Success!";
 	}
 
+	public void setTailFileSource(String filename){
+		FileTailingMessageProducerSupport fileInboundChannelAdapter = ApplicationContextProvider.getApplicationContext().getBean("fileInboundChannelAdapter",  FileTailingMessageProducerSupport.class);
+		fileInboundChannelAdapter.stop();
+		fileInboundChannelAdapter.setFile(new File(filename));
+		fileInboundChannelAdapter.start();
+	}
 }

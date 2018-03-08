@@ -15,4 +15,9 @@ public class RootController {
 	public String onRootAccess() {
 		return "redirect:/files/home";
 	}
+
+	@RequestMapping("/files/home")
+	public String home() {
+		return "files/home";
+	}
 }

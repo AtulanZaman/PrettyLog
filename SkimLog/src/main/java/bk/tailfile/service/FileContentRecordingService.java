@@ -18,11 +18,12 @@ public class FileContentRecordingService {
 	public SimpMessagingTemplate simpMessagingTemplate;
 	public List<ParserObject> stack = new ArrayList<ParserObject>();
 	public Timer timer = new Timer();
+	public Feature feature = new Feature();
 
 	public void sendLinesToTopic(String line) {
 		ParserObject p = ParseLog.parser(line);
-		Feature.setCollapsible(p);
-		if(Feature.isFilter(p)){
+		feature.setCollapsible(p);
+		if(feature.isFilter(p)){
 			stack.add(p);
 			if(stack.size() == 100){
 				this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", stack);
