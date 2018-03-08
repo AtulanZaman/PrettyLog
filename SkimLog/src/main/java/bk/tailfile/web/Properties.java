@@ -1,12 +1,16 @@
 package bk.tailfile.web;
 
+import java.util.List;
+
 public class Properties{
 	private String filename;
+	private List<String> filters;
 
 	public Properties (){}
 
-	public Properties (String filename){
+	public Properties (String filename, List<String> filters){
 		this.filename = filename;
+		this.filters = filters;
 	}
 
 	public String getFilename(){
@@ -17,7 +21,15 @@ public class Properties{
 		this.filename = filename;
 	}
 
+	public List<String> getFilters(){
+		return filters;
+	}
+
+	public void setFilters(List<String> filters){
+		this.filters = filters;
+	}
+
 	public String toString (){
-		return "Properties: "+filename;
+		return "Properties: filename={"+filename+"} filters:"+filters;
 	}
 }

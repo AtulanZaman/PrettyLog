@@ -11,13 +11,12 @@ import bk.tailfile.web.ApplicationContextProvider;
 
 @RestController
 public class TailController {
-	public Properties properties = new Properties();
+	public static Properties properties = new Properties();
 
 	@RequestMapping(value="/submit", method = RequestMethod.POST)
-	public String test(@RequestBody Properties properties){
+	public String submit(@RequestBody Properties properties){
 		this.properties = properties;
 		setTailFileSource(this.properties.getFilename());
-		System.out.println(this.properties);
 		return "Success!";
 	}
 

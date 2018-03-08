@@ -67,6 +67,15 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $
         $scope.searchText = '';
         $scope.connected = true;
         $scope.stompClient= null;
+        $scope.whitelist = 
+`nexj.core.controller
+nexj.model.class
+nexj.model.library
+nexj.core.rpc.http
+nexj.core.persistence.sql.SQLAdapter
+ERROR
+WARN`;
+        $scope.submit();
     }
 
     $scope.disconnect = function () {
@@ -98,8 +107,10 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $
 
     $scope.submit = function(){
         $scope.buffer = new CircularBuffer($scope.numLines);
+        var splitted_whitelist = $scope.whitelist.split("\n");
         var data = {
-            filename: $scope.filePath
+            filename: $scope.filePath,
+            filters: splitted_whitelist
         };
         var config = {
                 headers : {

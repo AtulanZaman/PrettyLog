@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<title>Tail file</title>
+<title>Eyeglass</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
     <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
@@ -38,19 +38,13 @@
         <div>
             <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
                 <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;width:25%;height:;" id="rightMenu">
-                      <form ng-submit="submit()">
-                        <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                      <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                      <form ng-submit="submit()">                        
                         <p style="margin-left:10px">Number of lines</p>
                         <input style="margin-left:10px" type="number" name="inpNumOfLines" ng-model="numLines"/>
                         <p style="margin-left:10px">WhiteList</p>
-                        <textarea style="margin-left:10px;width:80%;height:200px;" type="text" name="inpWhiteList">
-nexj.core.controller.*
-nexj.model.class.*
-nexj.model.library.*
-nexj.core.rpc.http.*
-nexj.core.persistence.sql.SQLAdapter.*
-ERROR
-WARN
+                        <textarea style="margin-left:10px;width:80%;height:200px;" type="text" name="inpWhiteList" ng-model="whitelist">
+
                        </textarea>
                         <p style="margin-left:10px">Log Pattern</p>
                         <input style="margin-left:10px; width: 80%;" type="text" name="inpLogPattern" ng-model="pattern"/>
