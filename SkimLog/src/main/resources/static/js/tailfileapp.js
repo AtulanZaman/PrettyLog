@@ -107,7 +107,7 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $
                 }
         };
         $http.post('/submit',data, config).then(function successCallback(response) {
-            console.log("Settings Changed.");
+            console.log(response.data);
         }, function errorCallback(response) {
             console.log("Error.");
         });

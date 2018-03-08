@@ -18,4 +18,5 @@
 					file-delay="10000"/>
 
 	<int:outbound-channel-adapter ref="fileContentRecordingService" method="sendLinesToTopic" channel="toTopicChannel"/>
+	<bean id="applicationContextProvder" class="bk.tailfile.web.ApplicationContextProvider"/>
 </beans>
