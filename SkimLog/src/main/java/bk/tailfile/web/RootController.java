@@ -2,6 +2,7 @@ package bk.tailfile.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * The only purpose of this root controller is to redirect the user on root context 
@@ -14,5 +15,10 @@ public class RootController {
 	@RequestMapping("/")
 	public String onRootAccess() {
 		return "redirect:/files/home";
+	}
+
+	@RequestMapping("/files/home")
+	public String home() {
+		return "files/home";
 	}
 }

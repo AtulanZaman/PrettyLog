@@ -87,7 +87,6 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $
 
     $scope.notify = function(message) {
         $scope.$apply(function() {
-            //console.log("Foobar"+(angular.fromJson(angular.fromJson(message.body))).toString());
             $scope.buffer.addAll(angular.fromJson(angular.fromJson(message.body)));
         });
     };
@@ -99,21 +98,19 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $
 
     $scope.submit = function(){
         $scope.buffer = new CircularBuffer($scope.numLines);
-    //     var data = {
-    //         filename: $scope.filePath
-    //     };
-    //     var config = {
-    //             headers : {
-    //                 'Accept': 'text/plain'
-    //             }
-    //     };
-    //     $http.post('/files/submit',data, config).then(function successCallback(response) {
-    // // this callback will be called asynchronously
-    // // when the response is available
-    //     }, function errorCallback(response) {
-    // // called asynchronously if an error occurs
-    // // or server returns response with an error status.
-    //     });
+        var data = {
+            filename: $scope.filePath
+        };
+        var config = {
+                headers : {
+                    'Accept': 'text/plain'
+                }
+        };
+        $http.post('/submit',data, config).then(function successCallback(response) {
+            console.log("Settings Changed.");
+        }, function errorCallback(response) {
+            console.log("Error.");
+        });
     }
 
     init();

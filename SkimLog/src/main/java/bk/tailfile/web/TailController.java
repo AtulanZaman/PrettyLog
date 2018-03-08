@@ -1,29 +1,20 @@
 package bk.tailfile.web;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
-@Controller
-@RequestMapping("/files")
+@RestController
 public class TailController {
-	String filename = "C:/Work/log/out.txt";
+	public Properties properties = new Properties();
 
-	@RequestMapping("/home")
-	public String home(Model model) {
-		System.out.println("foobar");
-		return "files/home";
-	}
-
-	@RequestMapping(value = "/submit", method = RequestMethod.POST)
-	public String submit(
-		@RequestParam("filename") String filename
-	){
-		System.out.println(filename);
-		this.filename = filename;
-		return this.filename;
+	@RequestMapping(value="/submit", method = RequestMethod.POST)
+	public String test(@RequestBody Properties properties){
+		this.properties = properties;
+		System.out.println(this.properties);
+		return "Success!";
 	}
 }
