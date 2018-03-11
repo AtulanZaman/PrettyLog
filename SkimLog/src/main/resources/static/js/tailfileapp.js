@@ -57,13 +57,14 @@ CircularBuffer.prototype.clear = function() {
 
 var tailFilesApp = angular.module("tailFilesApp",[]);
 
-tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', function ($scope, $http) {
+tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', '$interval', function ($scope, $http, $interval) {
 
     function init() {
         $scope.pattern = "; %d %-5p [%c] %m%n";
         $scope.filePath = "C:/Work/log/out.txt";
         $scope.numLines = 600;
         $scope.buffer = new CircularBuffer($scope.numLines);
+        $scope.renderBuffer = new CircularBuffer($scope.numLines);
         $scope.searchText = '';
         $scope.connected = true;
         $scope.stompClient= null;
@@ -75,7 +76,9 @@ nexj.core.rpc.http
 nexj.core.persistence.sql.SQLAdapter
 ERROR
 WARN`;
+        $interval(function(){$scope.renderBuffer=$scope.buffer}, 1000);
         $scope.submit();
+        
     }
 
     $scope.disconnect = function () {

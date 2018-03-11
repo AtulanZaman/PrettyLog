@@ -25,7 +25,7 @@ public class FileContentRecordingService {
 		feature.setCollapsible(p);
 		if(feature.isFilter(p)){
 			stack.add(p);
-			if(stack.size() == 100){
+			if(stack.size() == 300){
 				this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", stack);
 				stack.clear();
 			}

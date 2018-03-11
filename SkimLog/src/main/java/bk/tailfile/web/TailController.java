@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.integration.file.tail.FileTailingMessageProducerSupport;
+import org.springframework.integration.file.tail.ApacheCommonsFileTailingMessageProducer;
 import bk.tailfile.web.ApplicationContextProvider;
 
 @RestController
@@ -21,9 +21,10 @@ public class TailController {
 	}
 
 	public void setTailFileSource(String filename){
-		FileTailingMessageProducerSupport fileInboundChannelAdapter = ApplicationContextProvider.getApplicationContext().getBean("fileInboundChannelAdapter",  FileTailingMessageProducerSupport.class);
+		ApacheCommonsFileTailingMessageProducer fileInboundChannelAdapter = ApplicationContextProvider.getApplicationContext().getBean("fileInboundChannelAdapter",  ApacheCommonsFileTailingMessageProducer.class);
 		fileInboundChannelAdapter.stop();
 		fileInboundChannelAdapter.setFile(new File(filename));
+		fileInboundChannelAdapter.setEnd(true);
 		fileInboundChannelAdapter.start();
 	}
 }
