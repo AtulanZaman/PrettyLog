@@ -126,6 +126,10 @@ WARN`;
             console.log("Error.");
         });
     }
+    $scope.focusLog = function($event){
+       $scope.searchText = '';
+       $event.target.focus();
+    };
 
     init();
     $scope.initSockets();

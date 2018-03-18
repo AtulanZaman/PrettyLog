@@ -22,7 +22,6 @@ public class FileContentRecordingService {
 
 	public void sendLinesToTopic(String line) {
 		ParserObject p = ParseLog.parser(line);
-		feature.setCollapsible(p);
 		if(feature.isFilter(p)){
 			stack.add(p);
 			if(stack.size() == 300){
