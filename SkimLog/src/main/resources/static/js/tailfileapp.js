@@ -70,6 +70,7 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', 'growl', '$http', '$interval
     function init() {
         $scope.pattern = "; %d %-5p [%c] %m%n";
         $scope.filePath = "C:/Work/log/out.txt";
+        $scope.sidebarToggle = false;
         $scope.numLines = 600;
         $scope.buffer = new CircularBuffer($scope.numLines);
         $scope.renderBuffer = new CircularBuffer($scope.numLines);

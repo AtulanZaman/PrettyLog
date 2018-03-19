@@ -114,3 +114,25 @@ p, div {
 .growl-container.growl-fixed {
   max-width: 200px;
 }
+
+#sidebar .element{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.sidebar-active {
+  display:block;
+  right:0;
+  width:25%;
+}
+
+.sidebar-inactive {
+  display:none;
+  right:0;
+  width:25%;
+}
+
+.sidebarTextarea {
+  height:200px;
+}

@@ -21,18 +21,6 @@
         URLS.tailFilesURL = /*[[@{/tailfilesep}]]*/ '/tailfilesep';
         URLS.tailFilesTopic = /*[[@{/topic/tailfiles}]]*/ '/topic/tailfiles';
         /*]]>*/
-        function openLeftMenu() {
-            document.getElementById("leftMenu").style.display = "block";
-        }
-        function closeLeftMenu() {
-            document.getElementById("leftMenu").style.display = "none";
-        }
-        function openRightMenu() {
-            document.getElementById("rightMenu").style.display = "block";
-        }
-        function closeRightMenu() {
-            document.getElementById("rightMenu").style.display = "none";
-        }
     </script>
     <script th:src="@{/js/tailfileapp.js}" src="../../static/js/tailfileapp.js"></script>
 </head>
@@ -41,35 +29,31 @@
         <div>
             <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
                 <div growl></div>
-                <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;width:25%;height:;" id="rightMenu">
-                      <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
+                <div id="sidebar" ng-class="['w3-sidebar', 'w3-bar-block', 'w3-card', 'w3-animate-right', 
+                    {'sidebar-active': sidebarToggle, 
+                    'sidebar-inactive': !sidebarToggle}]">
                       <form ng-submit="submit()">                        
-                        <p style="margin-left:10px">Number of lines</p>
-                        <input style="margin-left:10px" type="number" name="inpNumOfLines" ng-model="numLines"/>
-                        <p style="margin-left:10px">WhiteList</p>
-                        <select style="margin-left:10px" classname="selectWhitelist" ng-model="whitelist">
-                          <option value="{{templateAppDev}}">AppDev</option>
-                          <option value="{{templateQA}}">QA</option>
-                          <option value="{{templateCustom}}">Custom</option>
-                        </select><br/><br/>
-                        <textarea style="margin-left:10px;width:80%;height:200px;" type="text" name="inpWhiteList" ng-model="whitelist">
-                       </textarea>
-                        <p style="margin-left:10px">Log Pattern</p>
-                        <input style="margin-left:10px; width: 80%;" type="text" name="inpLogPattern" ng-model="pattern"/>
-                        <br/>
-                        <br/>
-                        <div class="input-group">
-                          <p style="margin-left:10px">File name</p>
-                          <input style="margin-left:10px; width: 80%;" type="text" name="filePath" ng-model="filePath"/>
-                        </div>
-                        <input class="btn navbar-btn btn-default" style="margin-left:10px;" type="submit" value="Submit"/>
+                          <p class="element h5"><strong>Number of lines</strong></p>
+                          <input class="element" type="number" name="inpNumOfLines" ng-model="numLines" max="2000"/>
+                          <p class="element h5"><strong>WhiteList</strong></p>
+                          <select class="selectWhitelist element" ng-model="whitelist">
+                            <option value="{{templateAppDev}}">AppDev</option>
+                            <option value="{{templateQA}}">QA</option>
+                            <option value="{{templateCustom}}">Custom</option>
+                          </select>
+                          <textarea class="sidebarTextarea element" type="text" name="inpWhiteList" ng-model="whitelist"></textarea>
+                          <p class="element h5"><strong>Log Pattern</strong></p>
+                          <input class="element" type="text" name="inpLogPattern" ng-model="pattern"/>
+                          <p class="element h5"><strong>File name</strong></p>
+                          <input class="element" type="text" name="filePath" ng-model="filePath"/>
+                          <input class="btn navbar-btn btn-default" style="margin:15px" type="submit" value="Submit"/>
                       </form>
                       <form action="/shutdown" method="post">
-                          <input class="btn navbar-btn btn-default" value="Stop Server" type="submit" formmethod="post"/>
+                          <input class="btn navbar-btn btn-default" style="margin:15px" value="Stop Server" type="submit" formmethod="post"/>
                       </form>
                 </div>
                 
-                  <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top ">
+                  <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
                       <form class="form-inline">
                           <div class="input-group">
                              <span class="input-group-addon" id="basic-addon1">
@@ -77,10 +61,12 @@
                              </span>
                              <input type="text" class="form-control" placeholder="Search" style="width: 500px" ng-model="searchText"/>
                           </div>
-                          <button class="btn w3-button w3-dark-grey w3-xlarge pull-right" onclick="openRightMenu()">&#9776;</button>
-                            <button class="btn navbar-btn btn-default pull-right" ng-click="buffer.clear()">
-                              clear
-                            </button>
+                          <button class="btn navbar-btn w3-dark-grey pull-right" type="button" id="sidebarCollapse" ng-click="sidebarToggle = !sidebarToggle">
+                            &#9776;
+                          </button>
+                          <button class="btn navbar-btn btn-default pull-right" ng-click="buffer.clear()">
+                            clear
+                          </button>
                           <button class="btn navbar-btn btn-danger pull-right" ng-click="disconnect()" ng-show="connected">
                               disconnect
                           </button>
