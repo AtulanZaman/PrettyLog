@@ -17,7 +17,7 @@ public class TailController {
 	public String submit(@RequestBody Properties properties){
 		this.properties = properties;
 		setTailFileSource(this.properties.getFilename());
-		return "Success!";
+		return "Settings updated";
 	}
 
 	public void setTailFileSource(String filename){

@@ -55,9 +55,17 @@ CircularBuffer.prototype.clear = function() {
     this.arr = [];
 };
 
-var tailFilesApp = angular.module("tailFilesApp",[]);
+var tailFilesApp = angular.module("tailFilesApp",['angular-growl', 'ngAnimate']);
 
-tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', '$interval', function ($scope, $http, $interval) {
+tailFilesApp.config(['growlProvider', function (growlProvider) {
+    growlProvider.globalTimeToLive(3000);
+    growlProvider.globalDisableCountDown(true);
+    growlProvider.globalDisableIcons(true);
+    growlProvider.globalPosition('top-left');
+    growlProvider.globalDisableCloseButton(true);
+}]);
+
+tailFilesApp.controller("TailFilesCtrl", ['$scope', 'growl', '$http', '$interval', function ($scope, growl, $http, $interval) {
 
     function init() {
         $scope.pattern = "; %d %-5p [%c] %m%n";
@@ -124,8 +132,10 @@ WARN`;
         };
         $http.post('/submit',data, config).then(function successCallback(response) {
             console.log(response.data);
+            growl.success(response.data,{});
         }, function errorCallback(response) {
-            console.log("Error.");
+            growl.error("Oops! 'Something' went wrong.",{});
+            console.log("Oops! 'Something' went wrong.");
         });
     }
     $scope.focusLog = function($event){

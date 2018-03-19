@@ -106,3 +106,11 @@ p, div {
     height: 40%;
     width: 40%;
 }
+
+.growl-container.growl-fixed.top-left {
+  top: 60px;
+}
+
+.growl-container.growl-fixed {
+  max-width: 200px;
+}

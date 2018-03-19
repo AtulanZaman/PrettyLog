@@ -4,14 +4,17 @@
 <title>Eyeglass</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
-    <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"/>
+    <link rel="stylesheet" th:href="@{/css/angular-growl.css}" href="../../static/css/angular-growl.css" />
+    <link rel="stylesheet" th:href="@{/css/application.css}" href="../../static/css/application.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.7/angular-animate.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script th:src="@{/js/sockjs-0.3.4.js}" src="../../static/js/sockjs-0.3.4.js"> </script>
     <script th:src="@{/js/stomp.js}" src="../../static/js/stomp.js"> </script>
+    <script th:src="@{/js/angular-growl.min.js}" src="../../static/js/angular-growl.min.js"> </script>
     <script th:inline="javascript">
         /*<![CDATA[*/
         var URLS = {};
@@ -37,6 +40,7 @@
 	<div class="container-fluid">
         <div>
             <div ng-app="tailFilesApp" ng-controller="TailFilesCtrl">
+                <div growl></div>
                 <div class="w3-sidebar w3-bar-block w3-card w3-animate-right" style="display:none;right:0;width:25%;height:;" id="rightMenu">
                       <button onclick="closeRightMenu()" class="w3-bar-item w3-button w3-large">Close &times;</button>
                       <form ng-submit="submit()">                        
