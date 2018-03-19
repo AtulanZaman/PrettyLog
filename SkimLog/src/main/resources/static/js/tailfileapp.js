@@ -121,6 +121,7 @@ WARN`;
 
     $scope.submit = function(){
         $scope.buffer = new CircularBuffer($scope.numLines);
+        $scope.templateCustom = $scope.whitelist;
         var splitted_whitelist = $scope.whitelist.split("\n");
         var data = {
             filename: $scope.filePath,
