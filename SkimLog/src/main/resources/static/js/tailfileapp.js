@@ -128,7 +128,10 @@ WARN`;
     }
     $scope.focusLog = function($event){
        $scope.searchText = '';
-       $event.target.focus();
+       setTimeout(function(){
+           $event.target.focus();
+           $event.target.scrollIntoView({inline: "center"});
+       }, 100);
     };
 
     init();
