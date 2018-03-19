@@ -68,14 +68,16 @@ tailFilesApp.controller("TailFilesCtrl", ['$scope', '$http', '$interval', functi
         $scope.searchText = '';
         $scope.connected = true;
         $scope.stompClient= null;
-        $scope.whitelist = 
-`nexj.core.controller
+        $scope.templateAppDev = `nexj.core.controller
 nexj.model.class
 nexj.model.library
 nexj.core.rpc.http
 nexj.core.persistence.sql.SQLAdapter
 ERROR
 WARN`;
+        $scope.templateQA = `nexj.core.controller`;
+        $scope.templateCustom = $scope.templateAppDev;
+        $scope.whitelist = $scope.templateAppDev;
         $interval(function(){$scope.renderBuffer=$scope.buffer}, 1000);
         $scope.submit();
         
