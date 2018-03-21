@@ -16,14 +16,14 @@ import bk.tailfile.service.ConvertAndSendTimerTask;
 public class FileContentRecordingService {
 	@Autowired
 	public SimpMessagingTemplate simpMessagingTemplate;
-	public List<ParserObject> stack = new ArrayList<ParserObject>();
+	public Stack<ParserObject> stack = new Stack<ParserObject>();
 	public Timer timer = new Timer();
 	public Feature feature = new Feature();
 
 	public void sendLinesToTopic(String line) {
 		ParserObject p = ParseLog.parser(line);
 		if(feature.isFilter(p)){
-			stack.add(p);
+			stack.push(p);
 			if(stack.size() == 300){
 				this.simpMessagingTemplate.convertAndSend("/topic/tailfiles", stack);
 				stack.clear();
