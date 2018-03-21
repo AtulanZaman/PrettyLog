@@ -42,15 +42,25 @@
                             <option value="{{templateCustom}}">Custom</option>
                           </select>
                           <textarea class="sidebarTextarea element" type="text" name="inpWhiteList" ng-model="whitelist"></textarea>
-                          <p class="element h5"><strong>Log Pattern</strong></p>
-                          <input class="element" type="text" name="inpLogPattern" ng-model="pattern"/>
-                          <p class="element h5"><strong>File name</strong></p>
+                          <p class="element h5"><strong>Log File Pathe</strong></p>
                           <input class="element" type="text" name="filePath" ng-model="filePath"/>
                           <input class="btn navbar-btn btn-default" style="margin:15px" type="submit" value="Submit"/>
                       </form>
-                      <form action="/shutdown" method="post">
+                      <form class="form-inline" action="/shutdown" method="post">
                           <input class="btn navbar-btn btn-default" style="margin:15px" value="Stop Server" type="submit" formmethod="post"/>
                       </form>
+                      <p class="element h5"><strong>Log Pattern</strong></p>
+                      <input class="element" type="text" name="inpLogPattern" ng-model="pattern" readonly/>
+                      <p class="element h5"><strong>Studio VM Argument</strong></p>
+                      <textarea class="sidebarTextarea element" type="text" name="inpVMArguments" readonly>
+${nexj_log4j_options:DEBUG, file}
+  -Dlog4j.appender.file=org.apache.log4j.RollingFileAppender
+  -Dlog4j.appender.file.maxFileSize=1MB
+  -Dlog4j.appender.file.maxBackupIndex=5
+  -Dlog4j.appender.file.file="C:/Work/log/out.txt"
+  -Dlog4j.appender.file.layout=org.apache.log4j.PatternLayout
+  -Dlog4j.appender.file.layout.ConversionPattern="; %d %-5p [%c] %m%n"
+                      </textarea>
                 </div>
                 
                   <nav class="navbar navbar-inverse bg-inverse navbar-fixed-top">
