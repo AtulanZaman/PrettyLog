@@ -1,5 +1,5 @@
 package bk.tailfile.parser;
-import java.util.Random;
+import java.util.UUID;
 
 public class ParserObject {
 
@@ -70,7 +70,6 @@ public class ParserObject {
 	}
 
 	private Integer getOID(){
-		Random random = new Random();
-		return random.nextInt(999999999);
+		return UUID.randomUUID().hashCode();
 	}
 }

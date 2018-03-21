@@ -16,7 +16,6 @@ public class ParseLog {
 				matcher.group(4),
 				matcher.group(5)
 			);
-			System.out.println(p);
 		}else{
 			p = new ParserObject("", "", "", line.trim());
 		}
