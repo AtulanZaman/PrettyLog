@@ -8,6 +8,10 @@ public class ParserObject {
 	public Integer oid;
 
 	public ParserObject () {
+		this.timeStamp = "";
+		this.logLevel = "";
+		this.context = "";
+		this.body = "";
 		isCollapsible = false;
 		oid = getOID();
 	}
